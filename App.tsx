@@ -8,10 +8,14 @@ import AdaptiveDiv from './src/components/AdaptiveDiv';
 import WhiteContainer from './src/components/WhiteContainer';
 import InputAcount from './src/components/Input/InputAccount';
 import Select from 'components/Input/Select';
+import Modal from 'components/Modal';
+import User from 'components/User';
 // import Footer from 'components/Footer';
 
 import theme, {dripsyTheme} from './src/tools/theme';
 import DottedLine from 'components/DottedLine';
+import ModalCredit from 'components/ModalPopup/ModalCredit';
+import {RecoilRoot} from 'recoil';
 
 const sortOptions = {
   time: '출발 시간 순',
@@ -22,43 +26,54 @@ const sortOptions = {
 function App(): React.JSX.Element {
   const [sortOption, setSortOption] = useState(sortOptions.time);
   const [account, setAccount] = useState('');
-  return (
-    <DripsyProvider theme={dripsyTheme}>
-      <SafeAreaView>
-        <StatusBar />
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <WhiteContainer>
-            <AdaptiveDiv type="center">
-              <Button type="gray">Button</Button>
-            </AdaptiveDiv>
 
-            <View sx={{gap: 10}}>
-              <Select
-                value={sortOption}
-                options={Object.entries(sortOptions).map(([, value]) => ({
-                  value,
-                  label: value,
-                }))}
-                onChangeValue={setSortOption}
-              />
-              <View
-                sx={{
-                  flexDirection: 'row',
-                  paddingHorizontal: 10,
-                  gap: 10,
-                  justifyContent: 'flex-start',
-                  textAlign: 'center',
-                  alignItems: 'center',
-                }}>
-                <Text>계좌번호</Text>
-                <InputAcount value={account} onChangeValue={setAccount} />
+  return (
+    <RecoilRoot>
+      <DripsyProvider theme={dripsyTheme}>
+        <SafeAreaView>
+          <StatusBar />
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
+            <WhiteContainer>
+              <AdaptiveDiv type="center">
+                <Button type="gray">Button</Button>
+              </AdaptiveDiv>
+              <View sx={{gap: 10}}>
+                <Select
+                  value={sortOption}
+                  options={Object.entries(sortOptions).map(([, value]) => ({
+                    value,
+                    label: value,
+                  }))}
+                  onChangeValue={setSortOption}
+                />
+                <View
+                  sx={{
+                    flexDirection: 'row',
+                    paddingHorizontal: 10,
+                    gap: 10,
+                    justifyContent: 'flex-start',
+                    textAlign: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text>계좌번호</Text>
+                  <InputAcount value={account} onChangeValue={setAccount} />
+                </View>
               </View>
-            </View>
-            {/* <Footer /> */}
-          </WhiteContainer>
-        </ScrollView>
-      </SafeAreaView>
-    </DripsyProvider>
+              {/* <ModalCredit isOpen={true} /> */}
+              {/* <User
+                value={{
+                  _id: 'string',
+                  name: 'string',
+                  nickname: 'string',
+                  profileImageUrl: 'string',
+                  isSettlement: 'not-departed',
+                }}
+              /> */}
+            </WhiteContainer>
+          </ScrollView>
+        </SafeAreaView>
+      </DripsyProvider>
+    </RecoilRoot>
   );
 }
 export default App;

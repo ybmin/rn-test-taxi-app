@@ -36,7 +36,7 @@ const Input = ({
       padding: [6, 12],
       borderRadius: 6,
       backgroundColor: theme.purple_light,
-      // boxShadow: theme.shadow_purple_input_inset,
+      ...theme.font14,
     }}
     editable
     value={value}

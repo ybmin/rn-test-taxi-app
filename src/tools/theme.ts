@@ -45,17 +45,17 @@ const theme = {
   yellow: '#F2A024',
 
   // Font Size
-  font8: {fontSize: 8, letterSpacing: -0.2, lineHeight: '9px'},
+  font8: {fontSize: 8, letterSpacing: -0.2, lineHeight: 9},
   font8_medium: {
     fontSize: 8,
     letterSpacing: -0.2,
-    fontWeight: 500,
-    lineHeight: '9px',
+    fontWeight: '500',
+    lineHeight: 9,
   },
-  font10: {fontSize: 10, fontWeight: 300, lineHeight: '12px'},
-  font10_bold: {fontSize: 10, fontWeight: 700, lineHeight: '12px'},
+  font10: {fontSize: 10, fontWeight: '300', lineHeight: 12},
+  font10_bold: {fontSize: 10, fontWeight: '700', lineHeight: 12},
   font12: {fontSize: 12, letterSpacing: 0.4, lineHeight: 14},
-  font12_bold: {fontSize: 12, fontWeight: 700, lineHeight: '14px'},
+  font12_bold: {fontSize: 12, fontWeight: '700', lineHeight: 14},
   font14: {fontSize: 14, lineHeight: 16},
   font14_bold: {fontSize: 14, fontWeight: '700', lineHeight: 16},
   font16: {fontSize: 16, letterSpacing: -0.4, lineHeight: 19},
@@ -63,7 +63,7 @@ const theme = {
     fontSize: 16,
     letterSpacing: -0.4,
     fontWeight: 700,
-    lineHeight: '19px',
+    lineHeight: 19,
   },
   font18: {
     fontSize: 18,

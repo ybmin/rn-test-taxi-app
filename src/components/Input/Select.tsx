@@ -37,11 +37,12 @@ const Select = ({value, options, onChangeValue, className}: SelectProps) => {
         borderRadius: 6,
         backgroundColor: theme.purple_light,
         padding: '0 19px 0 10px',
-        overflow: 'hidden',
         justifyContent: 'center',
         height: 28,
         fontSize: '$3',
         lineHeight: '$3',
+        // elevation: 1,
+        // boxShadow: theme.shadow_purple_input_inset,
       }}>
       {/*dripsy test
       TODO: refactor style*/}

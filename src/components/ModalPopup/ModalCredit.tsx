@@ -1,115 +1,108 @@
-import { memo, useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import {memo, useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
+import {View, Text} from 'dripsy';
 
-import { Members } from "types/members";
+import {Members} from 'types/members';
 
-import Modal from "components/Modal";
-import Navigation from "components/Navigation";
+import Modal from 'components/Modal';
+import Navigation from 'components/Navigation';
 
-import theme from "tools/theme";
+import theme from 'tools/theme';
 
-import { ReactComponent as SparcsLogoBlack } from "static/assets/sparcsLogos/SparcsLogoBlack.svg";
-import { ReactComponent as SparcsLogoYellow } from "static/assets/sparcsLogos/SparcsLogoYellow.svg";
+// import { ReactComponent as SparcsLogoBlack } from "static/assets/sparcsLogos/SparcsLogoBlack.svg";
+// import { ReactComponent as SparcsLogoYellow } from "static/assets/sparcsLogos/SparcsLogoYellow.svg";
 import {
   members,
   members2023FallEvent,
   members2023SpringEvent,
-} from "static/members";
+} from 'static/members';
 
-type MemberProps = Members[number]["list"][number];
+type MemberProps = Members[number]['list'][number];
 
-const Member = ({ name, id, period }: MemberProps) => (
-  <div
-    css={{
+const Member = ({name, id, period}: MemberProps) => (
+  <View
+    sx={{
       background: theme.purple_light,
-      borderRadius: "10px",
-      padding: "16px 12px 12px",
+      borderRadius: '10px',
+      padding: '16px 12px 12px',
       boxShadow: theme.shadow,
-      display: "flex",
-      flexDirection: "column",
-    }}
-  >
-    <div
-      css={{
-        display: "flex",
-        alignItems: "center",
-        marginBottom: "8px",
-      }}
-    >
-      <div
-        css={{
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
+    <View
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '8px',
+      }}>
+      <Text
+        sx={{
           ...theme.font14_bold,
-          whiteSpace: "nowrap" as const,
-        }}
-      >
+          whiteSpace: 'nowrap' as const,
+        }}>
         {name}
-      </div>
-      <SparcsLogoYellow
+      </Text>
+      {/* <SparcsLogoYellow
         style={{
           height: "18px",
           paddingLeft: "8px",
           paddingRight: "4px",
         }}
-      />
-      <div
-        css={{
+      /> */}
+      <Text
+        sx={{
           ...theme.font12,
           color: theme.yellow,
-          fontWeight: "bold",
-        }}
-      >
+          fontWeight: 'bold',
+        }}>
         {id}
-      </div>
-    </div>
-    <div
-      css={{
+      </Text>
+    </View>
+    <Text
+      sx={{
         ...theme.font10_bold,
         color: theme.gray_text,
-      }}
-    >
+      }}>
       {period}
-    </div>
-  </div>
+    </Text>
+  </View>
 );
 
-type BodyMembersProps = { values: Members };
+type BodyMembersProps = {values: Members};
 
-const BodyMembers = ({ values }: BodyMembersProps) => (
-  <div
-    css={{
-      overflow: "auto",
-      paddingTop: "12px",
-      minHeight: "270px",
-      height: "calc(100vh - 360px)",
+const BodyMembers = ({values}: BodyMembersProps) => (
+  <View
+    sx={{
+      overflow: 'auto',
+      paddingTop: '12px',
+      minHeight: '270px',
+      height: 'calc(100vh - 360px)',
       maskImage:
-        "linear-gradient(to bottom, transparent, white 16px, white calc(100% - 16px), transparent 100%)",
-    }}
-  >
-    {values.map(({ position, list }) => (
-      <div key={position}>
-        <div
-          css={{
+        'linear-gradient(to bottom, transparent, white 16px, white calc(100% - 16px), transparent 100%)',
+    }}>
+    {values.map(({position, list}) => (
+      <View key={position}>
+        <Text
+          sx={{
             ...theme.font14_bold,
-            padding: "0 0 12px 12px",
-          }}
-        >
+            padding: '0 0 12px 12px',
+          }}>
           {position}
-        </div>
-        <div
-          css={{
-            display: "flex",
-            flexWrap: "wrap" as const,
-            gap: "12px",
-            paddingBottom: "12px",
-          }}
-        >
-          {list.map((member) => (
+        </Text>
+        <View
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap' as const,
+            gap: '12px',
+            paddingBottom: '12px',
+          }}>
+          {list.map(member => (
             <Member key={member.id} {...member} />
           ))}
-        </div>
-      </div>
+        </View>
+      </View>
     ))}
-  </div>
+  </View>
 );
 
 type ModalCreditProps = {
@@ -120,51 +113,49 @@ const ModalCredit = ({
   defaultSelectedCatagory,
   ...modalProps
 }: ModalCreditProps) => {
-  const { t } = useTranslation("mypage");
+  const {t} = useTranslation('mypage');
   const pages = useMemo(
     () => [
       {
-        key: "all",
-        name: t("page_credit.category_all"),
+        key: 'all',
+        name: t('page_credit.category_all'),
         body: <BodyMembers values={members} />,
       },
       {
-        key: "2023FallEvent",
-        name: t("page_credit.category_2023fall_event"),
+        key: '2023FallEvent',
+        name: t('page_credit.category_2023fall_event'),
         body: <BodyMembers values={members2023FallEvent} />,
       },
       {
-        key: "2023SpringEvent",
-        name: t("page_credit.category_2023spring_event"),
+        key: '2023SpringEvent',
+        name: t('page_credit.category_2023spring_event'),
         body: <BodyMembers values={members2023SpringEvent} />,
       },
     ],
-    [t]
+    [t],
   );
 
   return (
     <Modal
       width={theme.modal_width_large}
-      css={{ padding: "16px 12px 12px" }}
-      {...modalProps}
-    >
-      <div
-        css={{
+      padding="16px 12px 12px"
+      {...modalProps}>
+      <View
+        sx={{
           ...theme.font18,
-          display: "flex",
-          alignItems: "center",
-          marginBottom: "12px",
-        }}
-      >
-        <SparcsLogoBlack
+          display: 'flex',
+          alignItems: 'center',
+          marginBottom: '12px',
+        }}>
+        {/* <SparcsLogoBlack
           style={{
             height: "21px",
             width: "auto",
             margin: "0 8px",
           }}
-        />
-        {t("credit")}
-      </div>
+        /> */}
+        <Text>{t('credit')}</Text>
+      </View>
       <Navigation
         defaultSelectedKey={defaultSelectedCatagory}
         pages={pages}
