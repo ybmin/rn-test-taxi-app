@@ -1,7 +1,6 @@
-import theme from 'tools/theme';
+import {View} from 'dripsy';
 
-import {View} from 'react-native';
-import {css} from '@emotion/native';
+import theme from 'tools/theme';
 
 type Direction = 'row' | 'column';
 
@@ -15,39 +14,28 @@ type LineProps = {
 
 const DottedLine = ({
   direction = 'row',
-  margin = '0 0px',
+  margin = '0 0',
   ...divProps
 }: LineProps) => {
-  const wrapper = css`
-    height: direction === "row" ? '1px' : undefined;
-    width:
-      direction === "row"
-        ? calc(100%${
-          margin ? ' - 2 * ' + margin.toString().split(' ')[1] + 'px' : ''
-        })
-        : 1px;
-    margin: direction === "row" ? ${margin} : undefined;
-  `;
-  const line = css`
-    height: ${direction} === "row" ? undefined : calc(100% + 4px);
-    width: ${direction} === "row" ? calc(100% + 4px) : undefined;
-    borderTop:
-      ${direction} === "row" ? 5px dotted ${theme.gray_line} : undefined,
-    marginLeft: ${direction} === "row" ? -2px : undefined;
-    borderLeft:
-      ${direction} === "column" ? '5px dotted ${theme.gray_line}' : undefined;
-    marginTop: ${direction} === "column" ? -2px : undefined;
-  `;
-
+  const wrapper = {
+    height: direction === 'row' ? 1 : '100%',
+    width: direction === 'row' ? '100%' : 1,
+    overflow: 'hidden',
+    margin: margin,
+  };
+  const line = {
+    height: direction === 'row' ? undefined : '99%',
+    width: direction === 'row' ? '99%' : undefined,
+    borderColor: theme.gray_line,
+    borderStyle: 'dotted',
+    marginLeft: direction === 'row' ? '-2px' : undefined,
+    marginTop: direction === 'column' ? '-2px' : undefined,
+    overflow: 'hidden',
+    borderWidth: 5,
+  };
   return (
-    <View
-      style={css`
-      ...${wrapper}; 
-      overflow: hidden;
-      boxSizing: border-box;
-      `}
-      {...divProps}>
-      <View style={line} />
+    <View sx={wrapper}>
+      <View sx={line} />
     </View>
   );
 };

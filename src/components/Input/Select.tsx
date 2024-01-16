@@ -1,12 +1,11 @@
 import theme from '../../tools/theme';
 
-import {Text, TextStyle, StyleProp, View} from 'react-native';
-
+import {View} from 'dripsy';
 import {useState} from 'react';
 
 import {css} from '@emotion/native';
 
-import Icons from 'react-native-vector-icons/MaterialIcons';
+// import Icons from 'react-native-vector-icons/MaterialIcons';
 
 import {Picker} from '@react-native-picker/picker';
 
@@ -17,31 +16,40 @@ type SelectProps = {
   className?: string; // for emotion (css props)
 };
 
-const ArrowDropDownRoundedIcon = <Icons name="arrow-drop-down" size={16} />;
+// const ArrowDropDownRoundedIcon = <Icons name="arrow-drop-down" size={16} />;
 
 const Select = ({value, options, onChangeValue, className}: SelectProps) => {
-  const [state, setState] = useState([]);
   return (
     <View
-      style={
-        css`
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        color: ${theme.purple},
-        borderRadius: "6px",
-        height: "28px",
-        padding: "0 19px 0 10px",
-        background: ${theme.purple_light},
-        boxShadow: ${theme.shadow_purple_input_inset},
-        ...${theme.font14},
-      ` as StyleProp<TextStyle>
-      }>
+      // sx={css`
+      //   position: "relative",
+      //   display: "flex",
+      //   alignItems: "center",
+      //   borderRadius: "6px",
+      //   height: "28px",
+      //   padding: "0 19px 0 10px",
+      //   background: ${theme.purple_light},
+      //   // boxShadow: ${theme.shadow_purple_input_inset},
+      // `}> {/*boxShadow 에러 ;; */}
+      sx={{
+        position: 'relative',
+        flex: 1,
+        borderRadius: 6,
+        backgroundColor: theme.purple_light,
+        padding: '0 19px 0 10px',
+        overflow: 'hidden',
+        justifyContent: 'center',
+        height: 28,
+        fontSize: '$3',
+        lineHeight: '$3',
+      }}>
+      {/*dripsy test
+      TODO: refactor style*/}
       {/* {ArrowDropDownRoundedIcon} */}
       {/* #1. react native picker 사용  */}
       <Picker
         selectedValue={value}
-        onValueChange={(itemValue: string) => onChangeValue?.(itemValue)}
+        onValueChange={(itemValue, itemIndex) => onChangeValue?.(itemValue)}
         mode="dropdown"
         style={css`{
             position: "absolute",
@@ -50,10 +58,17 @@ const Select = ({value, options, onChangeValue, className}: SelectProps) => {
             right: 0,
             bottom: 0,
             opacity: 0,
+            color: ${theme.purple},
           }`} //...${theme.cursor()} 추가 방안 필요
       >
-        {options.map(value => (
-          <Picker.Item value={value} />
+        {options.map(({value, label}) => (
+          <Picker.Item
+            key={value}
+            label={label}
+            value={value}
+            style={{fontSize: 14, lineHeight: 10}}
+            color={theme.purple}
+          />
         ))}
       </Picker>
     </View>

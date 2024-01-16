@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {css} from '@emotion/react';
-import {StyleProp, View, ViewProps} from 'react-native';
+import {StyleProp} from 'react-native';
+import {View} from 'dripsy';
 
 import Input from '.';
 import Select from './Select';
@@ -52,13 +53,13 @@ const InputAcount = ({
 
   return (
     <View
-      style={
-        css`
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        overflow: "hidden",` as StyleProp<ViewProps>
-      }>
+      // sx={{
+      //   display: 'flex',
+      //   alignItems: 'center',
+      //   gap: 10,
+      //   overflow: 'hidden',
+      // }}
+      sx={{flex: 1, gap: 10, flexDirection: 'row'}}>
       <Select
         value={name}
         options={bankNames.map(name => ({value: name, label: name}))}

@@ -8,7 +8,7 @@ export type Font = {
   lineHeight?: string;
 };
 
-const stheme = {
+const theme = {
   // AdaptiveDiv setting value
   adaptivediv: {
     center_device_max_width: 430,
@@ -145,7 +145,9 @@ const stheme = {
   zIndex_alert: 60,
 };
 
-// export default stheme;
+export default theme;
+
+/******************************** */
 
 // dripsy theme
 const fontName = 'NanumSquare';
@@ -155,7 +157,7 @@ const webFont = (font: string) =>
     default: font,
   });
 
-export const theme = makeTheme({
+export const dripsyTheme = makeTheme({
   colors: {
     white: '#FFFFFF',
     black: '#323232',
