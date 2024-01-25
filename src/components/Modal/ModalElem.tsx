@@ -17,7 +17,7 @@ import AdaptiveDiv from 'components/AdaptiveDiv';
 import theme from 'tools/theme';
 
 import {css} from '@emotion/native';
-import {Pressable, View} from 'react-native';
+import {Pressable, View} from 'dripsy';
 
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -92,32 +92,30 @@ const ModalElem = ({
     setDisplay(shouldMount && isOpen);
   }, [shouldMount, isOpen]);
 
-  const styleBgd = css`{
-    position: "fixed" as any;
-    display: "flex";
-    top: "0px";
-    left: "0px";
-    width: "100%";
-    height: "calc(100% + 1px)"; // useDisableScrollEffect 로 감소된 1px을 보정
-    zIndex: isAlert ? theme.zIndex_alert : theme.zIndex_modal;
-    background: isAlert ? theme.black_40 : theme.black_60;
-    opacity: display ? 1 : 0;
-    transition: 'opacity ${theme.duration} ease-in-out';
-    pointerEvents: (isOpen ? "auto" : "none") as any;
-  }`;
-  const styleBody = css`
-     {
-      position: 'relative' as any;
-      background: ${theme.white};
-      borderradius: '15px';
-      padding: padding;
-      minheight: '148px';
-      maxheight: '720px';
-      display: 'flex';
-      flexdirection: 'column' as any;
-      boxsizing: 'border-box' as any;
-    }
-  `;
+  const styleBgd = {
+    position: 'fixed',
+    display: 'flex',
+    top: '0px',
+    left: '0px',
+    width: '100%',
+    height: 'calc(100% + 1px)', // useDisableScrollEffect 로 감소된 1px을 보정
+    zIndex: isAlert ? theme.zIndex_alert : theme.zIndex_modal,
+    background: isAlert ? theme.black_40 : theme.black_60,
+    opacity: display ? 1 : 0,
+    transition: 'opacity ' + theme.duration + ' ease-in-out',
+    pointerEvents: (isOpen ? 'auto' : 'none') as any,
+  };
+  const styleBody = {
+    position: 'relative' as any,
+    display: 'flex',
+    backgroundColor: theme.white,
+    borderRadius: '15px',
+    padding: padding,
+    minHeight: '148px',
+    maxHeight: '720px',
+    flexDirection: 'column' as any,
+    boxSizing: 'border-box' as any,
+  };
   const styleBtn = css`
     color: ${theme.gray_text};
     position: absolute;
@@ -130,12 +128,12 @@ const ModalElem = ({
   if (!shouldMount) return null;
   return (
     <Pressable
-      style={styleBgd}
+      sx={styleBgd}
       onPressIn={() => onPressIn}
       onPressOut={() => onPressOut}>
       {backgroundChildren}
       <AdaptiveDiv type="modal" width={width}>
-        <View style={styleBody}>
+        <View sx={styleBody}>
           {children}
           {displayCloseBtn && (
             <Icons name="close" style={styleBtn} onPress={() => closeHandler} />

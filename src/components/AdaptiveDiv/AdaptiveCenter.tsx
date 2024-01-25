@@ -1,8 +1,8 @@
-import {HTMLProps, ReactNode} from 'react';
+import {ReactNode} from 'react';
 import {View} from 'dripsy';
 import {css} from '@emotion/native';
 
-import theme from '../../tools/theme';
+import theme from 'tools/theme';
 
 export type AdaptiveCenterProps = {
   children?: ReactNode;

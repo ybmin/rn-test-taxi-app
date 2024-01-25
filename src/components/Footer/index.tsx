@@ -1,8 +1,8 @@
 import {ReactNode, memo, useCallback, useState} from 'react';
-import {View, Text, Linking, Pressable} from 'react-native';
+import {Linking} from 'react-native';
+import {View, Pressable} from 'dripsy';
 import {css} from '@emotion/native';
 
-// import { Link } from "react-router-dom";
 import {Link} from 'react-router-native';
 
 import {ModalCredit, ModalPrivacyPolicy} from 'components/ModalPopup';
@@ -30,7 +30,7 @@ const Footer = ({type = 'full', children}: FooterProps) => {
   );
 
   return (
-    <View style={{paddingTop: 10, alignContent: 'center'}}>
+    <View sx={{paddingTop: 10, alignContent: 'center'}}>
       {children}
       {type === 'full' && (
         <>
@@ -81,16 +81,15 @@ const Footer = ({type = 'full', children}: FooterProps) => {
         </>
       )}
       <View
-        style={css`
-          padding: '6px';
-        `}>
+        sx={{
+          padding: '6px',
+        }}>
         <Pressable
           onPress={() => Linking.openURL('https://sparcs.org/')}
           // (target = "_blank"),
           // (rel = "noreferrer")
         >
-          <Text>asd</Text>
-          {/* <SparcsLogo height={27} opacity={0.632} /> */}
+          <SparcsLogo height={27} opacity={0.632} />
         </Pressable>
       </View>
     </View>

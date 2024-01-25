@@ -1,7 +1,6 @@
 import theme from 'tools/theme';
 
 import {Pressable, Text, View} from 'dripsy';
-import {css} from '@emotion/native';
 
 type ButtonShareProps = {
   text: string;
@@ -11,35 +10,28 @@ type ButtonShareProps = {
 };
 
 const ButtonShare = ({text, icon, background, onClick}: ButtonShareProps) => (
-  <Pressable
-    sx={css`
-      width: 45px;
-      cursor: pointer;
-    `}
-    onPress={onClick}>
+  <Pressable sx={{width: '45px', cursor: 'pointer'}} onPress={onClick}>
     <View
-      sx={css`
-        width: 45px;
-        height: 45px;
-        borderradius: 6px;
-        backgroundcolor: ${background};
-        boxshadow: ${theme.shadow_gray_button_inset};
-        color: ${theme.gray_text};
-        display: flex;
-        alignitems: center;
-        justifycontent: center;
-      `}>
+      sx={{
+        width: '45px',
+        height: '45px',
+        borderRadius: '6px',
+        backgroundColor: background,
+        boxShadow: theme.shadow_gray_button_inset,
+        color: theme.gray_text,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       {icon}
     </View>
     <Text
-      style={[
-        sx`
-          color: ${theme.gray_text};
-          textalign: center;
-          paddingtop: 4px;
-        `,
-        theme.font10,
-      ]}>
+      sx={{
+        color: theme.gray_text,
+        textAlign: 'center',
+        paddingTop: '4px',
+        ...theme.font10,
+      }}>
       {text}
     </Text>
   </Pressable>

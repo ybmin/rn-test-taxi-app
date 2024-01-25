@@ -1,5 +1,5 @@
 import ProfileImage from './ProfileImage';
-import {View, Text} from 'dripsy';
+import {View, Text, SxProp} from 'dripsy';
 
 import theme from 'tools/theme';
 
@@ -37,7 +37,7 @@ const User = ({value, isDeparted}: UserProps) => {
             isDeparted && isSettlement ? theme.purple : theme.gray_background,
           flexDirection: 'row',
           alignItems: 'center',
-          // ...theme.ellipsis,
+          ...(theme.ellipsis as SxProp),
         }}>
         <Text
           sx={{

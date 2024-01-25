@@ -1,7 +1,6 @@
-import theme from '../../tools/theme';
+import theme from 'tools/theme';
 
 import {View} from 'dripsy';
-import {useState} from 'react';
 
 import {css} from '@emotion/native';
 
@@ -21,31 +20,16 @@ type SelectProps = {
 const Select = ({value, options, onChangeValue, className}: SelectProps) => {
   return (
     <View
-      // sx={css`
-      //   position: "relative",
-      //   display: "flex",
-      //   alignItems: "center",
-      //   borderRadius: "6px",
-      //   height: "28px",
-      //   padding: "0 19px 0 10px",
-      //   background: ${theme.purple_light},
-      //   // boxShadow: ${theme.shadow_purple_input_inset},
-      // `}> {/*boxShadow 에러 ;; */}
       sx={{
         position: 'relative',
-        flex: 1,
-        borderRadius: 6,
-        backgroundColor: theme.purple_light,
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: '6px',
+        height: '28px',
         padding: '0 19px 0 10px',
-        justifyContent: 'center',
-        height: 28,
-        fontSize: '$3',
-        lineHeight: '$3',
-        // elevation: 1,
-        // boxShadow: theme.shadow_purple_input_inset,
+        background: theme.purple_light,
+        boxShadow: theme.shadow_purple_input_inset,
       }}>
-      {/*dripsy test
-      TODO: refactor style*/}
       {/* {ArrowDropDownRoundedIcon} */}
       {/* #1. react native picker 사용  */}
       <Picker

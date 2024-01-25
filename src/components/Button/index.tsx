@@ -1,11 +1,9 @@
-import React, {HTMLProps, ReactNode} from 'react';
+import {ReactNode} from 'react';
+import {Pressable, SxProp, Text} from 'dripsy';
+import {ReactNativeStyle} from '@emotion/native';
 
-import useHoverProps from '../../hooks/theme/useHoverProps';
-
-import theme from '../../tools/theme';
-
-import {Pressable, Text} from 'dripsy';
-import {ReactNativeStyle, css} from '@emotion/native';
+import useHoverProps from 'hooks/theme/useHoverProps';
+import theme from 'tools/theme';
 
 type ButtonType = 'purple' | 'purple_inset' | 'gray' | 'white';
 
@@ -85,15 +83,16 @@ const Button = ({
     }
   };
 
-  const styles = css`
-    transition-duration: ${theme.duration};
-    ...${getColor()};
-  `; //TODO: theme cursor 처리
+  const styles = {
+    transition: theme.duration,
+    ...getColor(),
+  } as SxProp;
 
-  const textStyles = css`
-    textAlign: center;
-    ...${getTextColor()};
-  `;
+  const textStyles = {
+    textAlign: 'center',
+    ...textStyle,
+    ...getTextColor(),
+  } as SxProp;
 
   return (
     <Pressable
@@ -101,7 +100,7 @@ const Button = ({
       onPress={disabled ? undefined : onPressed}
       {...hoverProps}
       {...divProps}>
-      <Text style={[textStyles, textStyle]}>{children}</Text>
+      <Text sx={textStyles}>{children}</Text>
     </Pressable>
   );
 };

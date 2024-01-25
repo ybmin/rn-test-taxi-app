@@ -1,8 +1,6 @@
 import {ReactNode} from 'react';
+import theme from 'tools/theme';
 
-import theme from '../../tools/theme';
-
-import {css} from '@emotion/native';
 import {Pressable} from 'dripsy';
 
 export type AdaptiveModalProps = {

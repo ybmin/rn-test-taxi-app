@@ -5,6 +5,7 @@ import {useSetRecoilState} from 'recoil';
 
 import {deviceType} from 'tools/loadenv';
 import {sendClipboardCopyEventToFlutter} from 'tools/sendEventToFlutter';
+import {Pressable} from 'dripsy';
 
 type LinkCopyProps = {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ const LinkCopy = ({children, value, onCopy}: LinkCopyProps) => {
     navigator.clipboard.writeText(value);
     onCopy?.(value);
   }, [value, onCopy]);
-  return <a onClick={onClick}>{children}</a>;
+  return <Pressable onPress={onClick}>{children}</Pressable>;
 };
 
 export default LinkCopy;

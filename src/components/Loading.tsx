@@ -1,8 +1,9 @@
 import {css, keyframes} from '@emotion/react';
 
-import {Text, TextStyle, StyleProp} from 'react-native';
+import {TextStyle, StyleProp} from 'react-native';
+import {Text} from 'dripsy';
 
-import theme, {Font} from 'tools/theme';
+import theme from 'tools/theme';
 
 type LoadingProps = {
   center?: boolean;
@@ -38,7 +39,9 @@ const Loading = ({
     transform: translate(-50%, -50%);
   `;
 
-  return <Text style={[text, center && positionCenter]} />;
+  return (
+    <Text style={[text, center && positionCenter] as StyleProp<TextStyle>} />
+  );
 };
 
 export default Loading;

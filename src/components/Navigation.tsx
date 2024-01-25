@@ -1,6 +1,7 @@
 import {useEffect, useMemo, useState} from 'react';
+import {SxProp, View, Text} from 'dripsy';
 
-// import DottedLine from "./DottedLine";
+import DottedLine from './DottedLine';
 
 import theme from 'tools/theme';
 
@@ -25,22 +26,24 @@ const OptionNavigation = ({
   isSelected,
   onClick,
 }: ButtonNavigationProps) => (
-  <div
-    css={{
-      ...theme.font12,
-      borderRadius: '6px',
-      padding: '5px 8px',
-      ...theme.cursor(),
-      color: isSelected ? theme.white : theme.gray_text,
-      backgroundColor: isSelected ? theme.purple : theme.gray_background,
-      boxShadow: isSelected
-        ? theme.shadow_purple_button_inset
-        : theme.shadow_gray_input_inset,
-      transition: `all ${theme.duration} ease-in-out`,
-    }}
-    onClick={onClick}>
+  <Text
+    sx={
+      {
+        ...theme.font12,
+        borderRadius: '6px',
+        padding: '5px 8px',
+        ...theme.cursor(),
+        color: isSelected ? theme.white : theme.gray_text,
+        backgroundColor: isSelected ? theme.purple : theme.gray_background,
+        boxShadow: isSelected
+          ? theme.shadow_purple_button_inset
+          : theme.shadow_gray_input_inset,
+        transition: `all ${theme.duration} ease-in-out`,
+      } as SxProp
+    }
+    onPress={onClick}>
     {name}
-  </div>
+  </Text>
 );
 
 const Navigation = ({
@@ -57,8 +60,8 @@ const Navigation = ({
 
   return (
     <>
-      <div
-        css={{
+      <View
+        sx={{
           display: 'flex',
           flexWrap: 'wrap',
           gap: '8px',
@@ -72,8 +75,8 @@ const Navigation = ({
             onClick={() => setSelected(key)}
           />
         ))}
-      </div>
-      {/* {isDisplayDottedLine && <DottedLine />} */}
+      </View>
+      {isDisplayDottedLine && <DottedLine />}
       {pages.find(({key}) => key === selected)?.body}
     </>
   );

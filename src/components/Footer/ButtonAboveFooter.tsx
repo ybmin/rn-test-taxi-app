@@ -1,6 +1,5 @@
 import theme from 'tools/theme';
-import {View, Text} from 'dripsy';
-import {css} from '@emotion/native';
+import {View, Text, SxProp} from 'dripsy';
 
 type ButtonAboveFooterProps = {
   text: string;
@@ -9,16 +8,16 @@ type ButtonAboveFooterProps = {
 
 const ButtonAboveFooter = ({text, onClick}: ButtonAboveFooterProps) => (
   <View
-    sx={css`
-      padding: 6px;
-    `}>
+    sx={{
+      padding: '6px',
+    }}>
     <Text
       onPress={onClick}
-      sx={css`
-      ...theme.font12;
-        color: ${theme.gray_text};
-        ...theme.cursor();
-      `}>
+      sx={{
+        color: theme.gray_text,
+        ...theme.font12,
+        ...(theme.cursor() as SxProp),
+      }}>
       {text}
     </Text>
   </View>

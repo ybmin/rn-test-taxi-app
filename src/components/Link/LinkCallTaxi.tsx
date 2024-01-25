@@ -1,5 +1,6 @@
 import type {Location} from 'types/location';
-import {Linking, Text} from 'react-native';
+import {Linking} from 'react-native';
+import {Text} from 'dripsy';
 
 import taxiLocationsAtom from 'atoms/taxiLocations';
 import {useRecoilValue} from 'recoil';
@@ -29,7 +30,7 @@ const LinkCallTaxi = ({children, type, from, to}: LinkCallTaxiProps) => {
   return (
     <Text
       onPress={() => Linking.openURL(deeplink)}
-      style={{textDecorationLine: 'none'}}>
+      sx={{textDecorationLine: 'none'}}>
       {children}
     </Text>
   );

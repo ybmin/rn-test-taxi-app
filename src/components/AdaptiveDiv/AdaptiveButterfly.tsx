@@ -1,10 +1,10 @@
 import {ReactNode} from 'react';
 
-import useButterflyState from '../../hooks/useButterflyState';
+import useButterflyState from 'hooks/useButterflyState';
 
 import AdaptiveCenter from './AdaptiveCenter';
 
-import theme from '../../tools/theme';
+import theme from 'tools/theme';
 import {View} from 'dripsy';
 import {css} from '@emotion/native';
 
@@ -40,7 +40,7 @@ const AdaptiveButterfly = ({left, right}: AdaptiveButterflyProps) => {
       }}>
       <View sx={styleColumn}>{left}</View>
       <View sx={{width: butterflyGap}} />
-      <View style={styleColumn}>{right}</View>
+      <View sx={styleColumn}>{right}</View>
     </View>
   );
 };
